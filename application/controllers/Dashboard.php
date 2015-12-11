@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller{
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,7 +17,6 @@ class Dashboard extends CI_Controller{
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	 
 	public function __construct()
 	{
 		parent::__construct();
@@ -57,18 +55,6 @@ class Dashboard extends CI_Controller{
 		$this->load->view('template/footer');
 
 	}
-	public function add_int(){
-		$this->load->view('template/header');
-		$this->load->view('template/navigation');
-		$this->load->view('template/page-content');
-		$this->load->view('template/footer');
-	}
-	public function add_path1(){
-
-	}
-	public function add_path2(){
-
-	}
 	public function insert_user()
 	{	
 		$this->user->user_register();
@@ -79,7 +65,7 @@ class Dashboard extends CI_Controller{
 		$data['user'] = $this->input->post('username');
   		$data['pass'] = $this->input->post('password');
   		//$this->verifyuser($data);
-  		if($data['user_info']=$this->user->getcredentials($data['user'],$data['pass'])){
+  		if($user['user_info']=$this->user->getcredentials($data['user'],$data['pass'])){
   			$this->home();
   		}else{
   			redirect(base_url());

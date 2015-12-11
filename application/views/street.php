@@ -1,1 +1,1 @@
-<?php //echo $user; echo $pass; ?>
+<?php echo $user_info; ?>

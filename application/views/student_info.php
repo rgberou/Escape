@@ -1,10 +1,4 @@
-<html>
-	<head>
-		<title> <?php echo $title; ?> </title>
-	</head>
-	<body>
-		
-	<?php echo form_open('dashboard/insert_user'); ?>
+<?php echo form_open('dashboard/insert_user'); ?>
 	<p>
 		<label for="username">Username</label>
 		<input type="text" id="username" name="username"> </type>
@@ -45,8 +39,6 @@
 		<input type="submit" value="Submit">
 	</p>
 
-	<?php echo form_close();?>
+<?php echo form_close();?>
 		
 		
-	</body>
-</html>

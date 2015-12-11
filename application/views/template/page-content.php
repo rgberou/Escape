@@ -9,26 +9,19 @@
                             Live Map
                             <small>View Traffic and Modify Traffic in the Map</small>
                         </h1>
-                        <!-- the map content -->
+                        <!-- the map content <div id="canvas"/></div>-->
                         <div id="content">
-                            <div id="canvas"/></div>
-                            <?php
-                                
-                                if ($choice==1) {
-                                    include ('overmap.php');
-                                }
-                             
-                             ?>
-                            <?php include ('addstreet.php'); ?>
-  
-                    </div>
                             
+                            <?php include ('register.php'); ?>
+  
                         </div>
+                            
                     </div>
                 </div>
+            </div>
                 <!-- /.row -->
 
-            </div>
+</div>
             <!-- /.container-fluid -->
 
         </div>
