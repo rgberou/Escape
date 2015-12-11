@@ -1,53 +1,63 @@
-<div class="modal-dialog logform">
-      <div class="modal-content">
-         <div class="modal-header col-md-12">
-          </div>
-          <div class="modal-body">
-              <?php echo validation_errors() ?>
-              <?php echo form_open('dashboard/insert_user'); ?>
-                <p>
-					<label for="username">Username</label>
-					<input type="text"  id="username" name="username" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="lastname">Lastname</label>
-					<input type="text" id="lastname" name="lastname" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="firstname">Firstname</label>
-					<input type="text" id="firstname" name="firstname" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="password">Password</label>
-					<input type="text" id="password" name="password" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="gender">Gender</label>
-					<input type="text" id="gender" name="gender" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="type">type</label>
-					<input type="text" id="type" name="type" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="status">status</label>
-					<input type="text" id="status" name="status" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="email">email</label>
-					<input type="text" id="email" name="email" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<label for="loggedin">loggedin</label>
-					<input type="text" id="loggedin" name="loggedin" input type="text" class="form-control input-lg form-group"> </type>
-				</p>
-				<p>
-					<input type="submit" class="btn btn-block btn-lg btn-primary logbutton" value="Submit">
-				</p>
-              <?php echo form_close();?> 
-          </div>
-          <div class="modal-footer">
-              
-          </div>     
-      </div>     
+<div class="row">
+	<?php echo form_open('dashboard/admin_register'); ?>
+     <div class="col-md-6">
+         <div class="form-group">
+             <p>
+				<label for="ID">ID</label>
+				<input type="text"  name="id" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+         </div>
+         <div class="form-group">
+             <p>
+				<label for="Username">Username</label>
+				<input type="text"  name="username" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+         </div>
+         <div class="form-group">
+             <p>
+				<label for="Lastname">Lastname</label>
+				<input type="text"  name="lastname" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+        </div>
+        <div class="form-group">
+             <p>
+				<label for="Firstname">Firstname</label>
+				<input type="text"  name="firstname" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+        </div>
+        <div class="form-group">
+             <p>
+				<label for="Email">Email</label>
+				<input type="text"  name="email" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+        </div>
+        <div class="form-group">
+            <p>
+				<label for="Firstname">Password</label>
+				<input type="text" name="password" input type="text" class="form-control input-lg form-group"> </type>
+			</p>
+        </div>
+        <div class="form-group">
+        	<select class="form-control" name="gender">
+				<option><h4>Choose your gender</h4></option>
+  				<option value="M">Male</option>
+  				<option value="F">Female</option>
+			</select>
+		</div>
+		<div class="form-group">
+        	<select class="form-control" name="type">
+				<option><h4>Choose member type</h4></option>
+  				<option value="A">Admin</option>
+  				<option value="E">Traffic Enforcer</option>
+			</select>
+		</div>	
+		<button type="submit" class="btn btn-block btn-lg btn-primary logbutton">Submit</button>
+    </dv>
+    <?php echo form_close();?> 
+    <?php echo validation_errors('<p class="error"></p>');?>
+    <div class="col-md-6">
+    	
     </div>
+    
+</div>
+              

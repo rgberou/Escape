@@ -1,1 +1,1 @@
-<?php echo $user_info; ?>
+<?php echo $respond; ?>

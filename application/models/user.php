@@ -1,21 +1,26 @@
 <?php 
 	class User extends CI_Model
 	{
-		public function user_register()
+		public function admin_register()
 		{
 			$data = array(
-					'account_username' => $this->input->post('username'),
-					'account_lastname' => $this->input->post('lastname'),
-					'account_firstname' => $this->input->post('firstname'),
-					'account_password' => $this->input->post('password'),
-					'account_gender' => $this->input->post('gender'),
-					'account_type' => $this->input->post('type'),
-					'account_status' => '0',
-					'account_email' => $this->input->post('email'),
-					'loggedin' => '0',
-				);
-				
-			$query = $this->db->insert('account', $data);
+					'admin_id' => $this->input->post('id'),
+					'admin_username' => $this->input->post('username'),
+					'admin_lastname' => $this->input->post('lastname'),
+					'admin_firstname' => $this->input->post('firstname'),
+					'password' => $this->input->post('password'),
+					'gender' => $this->input->post('gender'),
+					'conn_status' =>'0' ,
+					'admin_type' => $this->input->post('type'),
+					'admin_email' => $this->input->post('email'),
+			);		
+			$query = $this->db->insert('admin', $data);
+			if ($query) {
+				return true;
+			}else{
+				return false;
+			}
+			
 		}
 		
 		

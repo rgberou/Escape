@@ -36,29 +36,39 @@ class Dashboard extends CI_Controller{
 		$this->load->view('home');
 	}
 	public function home(){
-		$data['choice'] =0;
 		$this->load->view('template/header');
 		$this->load->view('template/navigation');
-		$this->load->view('template/page-content',$data);
+		$this->load->view('template/page-content');
 		$this->load->view('template/footer');
 	}
 	public function trial(){
 		$this->load->view('student_info');
 	}
-	public function reg_street(){
-		$data['choice'] =1;
-		$this->user->street_register();
+	public function admin_register(){	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('id','Id','required|is_unique[admin.admin_id]');
+		$this->form_validation->set_rules('username','Username','required|is_unique[admin.admin_email]');
+		$this->form_validation->set_rules('lastname','Lastname','required');
+		$this->form_validation->set_rules('firstname','Firstname','required');
+		$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[admin.admin_email]');
+		$this->form_validation->set_rules('username','Username','required');
+		$this->form_validation->set_rules('type','Type','required');
+		$this->form_validation->set_rules('gender','Gender','required');
+		$this->form_validation->set_rules('password','Password','required');
 		
-		$this->load->view('template/header');
-		$this->load->view('template/navigation');
-		$this->load->view('template/page-content',$data);
-		$this->load->view('template/footer');
-
-	}
-	public function insert_user()
-	{	
-		$this->user->user_register();
-		$this->index();
+		if($this->form_validation->run()==FALSE){
+			$this->load->view('template/header');
+			$this->load->view('template/navigation');
+			$this->load->view('template/page-content');
+			$this->load->view('template/footer');
+		}else{
+			$this->load->view('template/header');
+			$this->load->view('template/navigation');
+			$this->load->view('template/page-content');
+			$this->load->view('template/footer');
+		}
+		
+		
 	}
 	public function login(){
 
@@ -71,9 +81,4 @@ class Dashboard extends CI_Controller{
   			redirect(base_url());
   		}
 	}
-	public function verifyuser($data){
-
-		$this->load->view('street',$data);
-	}
-
 }
