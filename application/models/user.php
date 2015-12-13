@@ -22,17 +22,25 @@
 			}
 			
 		}
+
+		public function getUsers(){
+			$this->db->select('*');
+    		$this -> db -> from('admin');
+
+    		$query = $this -> db -> get();
+ 
+   			return $query->result();
+		}
 		
 		
 			//return $query->result();
 		public	function getcredentials($username, $password)
  			{
    				$this -> db -> select('account_lastname, account_firstname');
-   				$this -> db -> from('account');
+   				$this -> db -> from('member');
    				$this -> db -> where('account_username', $username);
    				$this -> db -> where('account_password',$password);
-   			
- 
+
    				$query = $this -> db -> get();
  
    				if($query -> num_rows() == 1)

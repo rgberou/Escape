@@ -118,25 +118,33 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
+                <ul class="nav navbar-nav side-nav" ng-init="tab==1">
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Live Map<i class="fa fa-fw fa-caret-down"></i></a>
-
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#map-op" ng-click="tab=1"><i class="fa fa-fw fa-arrows-v"></i> Live Map<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="map-op" class="collapse">
                             <li>
-                                <a data-toggle="modal" data-target="#streetModal">Add Street</a>
+                                <a href="<?php echo base_url();?>index.php/dashboard/getUsers" ng-click="">Traf</a>
                             </li>
                             <li>
-                                <a href="#">Add Location</a>
+                                <a href ng-click="tab=3">Add Location</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Enforcer Management</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#account-op" ng-click="tab=4"><i class="fa fa-fw fa-arrows-v"></i>Account Management<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="account-op" class="collapse">
+                            <li>
+                                <a ng-click="tab=4">Admin/Enforcer Registration</a>
+                            </li>
+                            <li>
+                                <a ng-click="tab=5">Admin/Enforcer List</a>
+                            </li>
+                            <li>
+                                <a ng-click="tab=6">User List</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

@@ -71,7 +71,6 @@ class Dashboard extends CI_Controller{
 		
 	}
 	public function login(){
-
 		$data['user'] = $this->input->post('username');
   		$data['pass'] = $this->input->post('password');
   		//$this->verifyuser($data);
@@ -80,5 +79,12 @@ class Dashboard extends CI_Controller{
   		}else{
   			redirect(base_url());
   		}
+	}
+	public function getUsers(){
+		$this->load->view('template/header');
+		$this->load->view('template/navigation');
+		$data['user']=$this->load->user->getUsers();
+		$this->load->view('template/page-content',$data);
+		$this->load->view('template/footer');
 	}
 }

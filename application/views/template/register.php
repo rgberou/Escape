@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-show="tab==4">
 	<?php echo form_open('dashboard/admin_register'); ?>
      <div class="col-md-6">
          <div class="form-group">

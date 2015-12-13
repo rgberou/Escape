@@ -1,3 +1,4 @@
+<html ng-app="Escape">
 <head>
 
     <meta charset="utf-8">

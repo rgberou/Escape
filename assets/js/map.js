@@ -1,4 +1,5 @@
-// configuration
+(function(){
+    // configuration
 var myZoom = 15;
 var myMarkerIsDraggable = true;
 var myCoordsLenght = 6;
@@ -37,5 +38,5 @@ map.setCenter(myMarker.position);
 
 // adds the marker on the map
 myMarker.setMap(map);
-
-
+    
+})();
