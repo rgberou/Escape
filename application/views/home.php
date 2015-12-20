@@ -18,9 +18,8 @@
             <img src="assets/img/logo.png" width="150px" height="150px" class="">
           </div>
           <div class="modal-body">
-              <?php echo validation_errors() ?>
               <?php echo form_open('dashboard/login'); ?>
-                <input type="text" class="form-control input-lg form-group" placeholder="Username" id="username" name="username" value="" required>
+                <input type="text" class="form-control input-lg form-group" placeholder="Username" id="username" name="email" value="" required>
                 <input type="password" class="form-control input-lg form-group" placeholder="Password" id="password" name="password" value="" required>
                 <button type="submit" class="btn btn-block btn-lg btn-primary logbutton">Sign in</button>
               <?php echo form_close();?> 

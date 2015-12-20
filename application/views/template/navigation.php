@@ -11,99 +11,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="<?php echo base_url();?>">Escape</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $this->session->userdata['data']['account_fname'].' '.$this->session->userdata['data']['account_lname']; ?><b class="caret"></b></a>
+                    <ul class="dropdown-menu" ng-controller="ctrl">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
@@ -120,32 +34,33 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav" ng-init="tab==1">
+
+                <ul class="nav navbar-nav side-nav">   
+                    <div class="container-fluid text-center">
+                        <h4 class="greeting">Welcome <?php echo $this->session->userdata['data']['account_fname'].' '.$this->session->userdata['data']['account_lname']; ?>!</h4>
+                    </div>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#map-op" ng-click="tab=1"><i class="fa fa-fw fa-arrows-v"></i> Live Map<i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="map-op" class="collapse">
-                            <li>
-                                <a href="<?php echo base_url();?>index.php/dashboard/getUsers" ng-click="">Traf</a>
-                            </li>
-                            <li>
-                                <a href ng-click="tab=3">Add Location</a>
-                            </li>
-                        </ul>
+                        <li><!--Navigation for the view of the Map -->
+                            <a href="<?php echo base_url();?>index.php/dashboard/map_display"> <i class="glyphicon glyphicon-home"></i> Dashboard</a>
+                        </li>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#account-op" ng-click="tab=4"><i class="fa fa-fw fa-arrows-v"></i>Account Management<i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="account-op" class="collapse">
-                            <li>
-                                <a ng-click="tab=4">Admin/Enforcer Registration</a>
-                            </li>
-                            <li>
-                                <a ng-click="tab=5">Admin/Enforcer List</a>
-                            </li>
-                            <li>
-                                <a ng-click="tab=6">User List</a>
-                            </li>
-                        </ul>
+                        <li><!--Navigation for the view of the Map -->
+                            <a href="<?php echo base_url();?>index.php/dashboard/userlist"><i class="glyphicon glyphicon-user"></i> Users</a>
+                        </li>
                     </li>
+                    <li>
+                        <li><!--Navigation for the view of the Map -->
+                            <a href="<?php echo base_url();?>index.php/dashboard/postslist"><i class="glyphicon glyphicon-road"></i> Traffic Posts</a>
+                        </li>
+                    </li>
+                    <li>
+                        <li><!--Navigation for the view of the Map -->
+                            <a href="<?php echo base_url();?>index.php/dashboard/userlist"><i class="glyphicon glyphicon-user"></i> Jeepney Management</a>
+                        </li>
+                    </li>
+
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

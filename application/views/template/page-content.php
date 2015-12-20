@@ -9,11 +9,27 @@
                             Live Map
                             <small>View Traffic and Modify Traffic in the Map</small>
                         </h1>
-                        <!-- <?php// include ('register.php'); ?>the map content-->
+                        <!-- the map content-->
                         <div id="content">
-                            <div id="canvas" ng-show="tab==1"></div>
+                            <?php 
+                               switch ($choice) {
+                                   case 1:
+                                       include ('map.php');
+                                       break;
+                                    case 2:
+                                        include ('userlist.php');
+                                        break;
+                                    case 3:
+                                        include ('registration.php');
+                                        break;
+                                   default:
+                                       include ('map.php'); 
+                                       break;
+                               }
+                            ?>
+                            <?php ; ?>
                             
-                            <?php include ('userlist.php'); ?>
+                            <?php ; ?>
   
                         </div>
                             

@@ -4,17 +4,16 @@
 		public function admin_register()
 		{
 			$data = array(
-					'admin_id' => $this->input->post('id'),
-					'admin_username' => $this->input->post('username'),
-					'admin_lastname' => $this->input->post('lastname'),
-					'admin_firstname' => $this->input->post('firstname'),
-					'password' => $this->input->post('password'),
+					'account_id' => $this->input->post('id'),
+					'account_lname' => $this->input->post('lastname'),
+					'account_fname' => $this->input->post('firstname'),
+					'password' => md5('12345'),
 					'gender' => $this->input->post('gender'),
 					'conn_status' =>'0' ,
-					'admin_type' => $this->input->post('type'),
-					'admin_email' => $this->input->post('email'),
+					'account_type' => $this->input->post('type'),
+					'account_email' => $this->input->post('email'),
 			);		
-			$query = $this->db->insert('admin', $data);
+			$query = $this->db->insert('account', $data);
 			if ($query) {
 				return true;
 			}else{
@@ -25,21 +24,23 @@
 
 		public function getUsers(){
 			$this->db->select('*');
-    		$this -> db -> from('admin');
-
+    		$this -> db -> from('account');
     		$query = $this -> db -> get();
- 
    			return $query->result();
 		}
 		
+		public function edit($user){
+			
+		}
 		
 			//return $query->result();
-		public	function getcredentials($username, $password)
+		public	function getcredentials($email, $password)
  			{
-   				$this -> db -> select('account_lastname, account_firstname');
-   				$this -> db -> from('member');
-   				$this -> db -> where('account_username', $username);
-   				$this -> db -> where('account_password',$password);
+   				$this -> db -> select('*');
+   				$this -> db -> from('account
+   					');
+   				$this -> db -> where('account_email', $email);
+   				$this -> db -> where('password',$password);
 
    				$query = $this -> db -> get();
  

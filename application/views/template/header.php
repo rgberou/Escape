@@ -11,9 +11,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/dash.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

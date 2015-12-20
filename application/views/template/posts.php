@@ -7,7 +7,7 @@
         <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header head-title">
-                           Admin Master List
+                           Traffic Posts List
                         </h1>
 
                             <div class="row box box-shadow">
@@ -53,7 +53,7 @@
                                                       Select an Action <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="<?php echo site_url('dashboard/editUser/'.$users->account_id);?>">Edit</a></li>
+                                                        <li><a href="#">Edit</a></li>
                                                         <li><a href="#">Suspend</a></li>
                                                         <li><a href="#">Delete</a></li>
                                                     </ul>

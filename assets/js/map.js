@@ -24,19 +24,7 @@ var myMarker = new google.maps.Marker({
 	draggable: myMarkerIsDraggable
 });
 
-
-// adds a listener to the marker
-// gets the coords when drag event ends
-// then updates the input with the new coords
-google.maps.event.addListener(myMarker, 'dragend', function(evt){
-	document.getElementById('latitude').value = evt.latLng.lat().toFixed(myCoordsLenght);
-	document.getElementById('longitude').value = evt.latLng.lng().toFixed(myCoordsLenght);
-});
-
-// centers the map on markers coords
-map.setCenter(myMarker.position);
-
-// adds the marker on the map
-myMarker.setMap(map);
+var trafficLayer = new google.maps.TrafficLayer();
+trafficLayer.setMap(map);
     
 })();
