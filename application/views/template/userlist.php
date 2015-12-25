@@ -11,7 +11,7 @@
                         <div class="row container-fluid row-adjust">
                             <div class="col-md-6 row-adjust"><h4>User</h4></div>
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-info btn-md button-adjust pull-right" data-toggle="modal" data-target="#myModal">Create new Admin</button>
+                                <button id="new" class="btn btn-info btn-md button-adjust pull-right">Create new Admin</button>
                             </div>
                         </div>
                         <hr></hr>
@@ -33,6 +33,11 @@
         </div> 
     </div>
  </div>
+ <script type="text/javascript">
+    document.getElementById("new").onclick = function () {
+        location.href = "<?php echo base_url();?>index.php/dashboard/register";
+    };
+</script>
 
     
 

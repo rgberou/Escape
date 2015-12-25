@@ -122,7 +122,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #337ab7;
+        background-color: #31708F;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -350,5 +350,20 @@ ul.alert-dropdown {
     line-height: 1.42857143;
     vertical-align: middle;
     border-top: 1px solid #ddd;
+}
+.side-nav{
+    background-color: #337ab7;
+}
+.greeting{
+    color: white;
+}
+.left-adjust{
+    margin-left: 6px;
+}
+.top-details{
+    line-height: 0;
+}
+.post-fragment{
+    width: 32%;
 }
 

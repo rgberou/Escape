@@ -26,7 +26,6 @@ class Dashboard extends MY_Controller{
 		$this->load->helper('url');
 		$this->load->helper('html');
 		$this->load->library('session');
-
 		
 	}
 	public function index()
@@ -39,14 +38,37 @@ class Dashboard extends MY_Controller{
 		$this->load->view('home');
 	}
 	public function map_display(){
-		$this->load->library('googlemaps');
-		$data['title'] = "Escape";
+		
 		$data['content'] = 'template/map.php';
-		$config['trafficOverlay'] = TRUE;
-		$config['center'] = 'Mandaue City, Cebu';
+		$this->load->library('googlemaps');
+		$config['center'] = '37.4419, -122.1419';
+		$config['zoom'] = 'auto';
 		$this->googlemaps->initialize($config);
 
+		$marker = array();
+		$marker['position'] = '37.429, -122.1419';
+		$marker['draggable'] = true;
+		$marker['ondragend'] = 'alert(\'You just dropped me at: \' + event.latLng.lat() + \', \' + event.latLng.lng());';
+		$this->googlemaps->add_marker($marker);
 		$data['map'] = $this->googlemaps->create_map();
+
+		$this->load->view($this->layout,$data);
+		
+	}
+	public function map(){
+		
+		$data['content'] = 'template/traf.php';
+		$this->load->library('googlemaps');
+		$config['center'] = '37.4419, -122.1419';
+		$config['zoom'] = 'auto';
+		$this->googlemaps->initialize($config);
+		$marker = array();
+		$marker['position'] = '37.429, -122.1419';
+		$marker['draggable'] = true;
+		$marker['ondragend'] = 'alert(\'You just dropped me at: \' + event.latLng.lat() + \', \' + event.latLng.lng());';
+		$this->googlemaps->add_marker($marker);
+		$data['map'] = $this->googlemaps->create_map();
+
 		$this->load->view($this->layout,$data);
 		
 	}
@@ -54,11 +76,13 @@ class Dashboard extends MY_Controller{
 	public function editUser(){
 		$id = $this->uri->segment(3, 0);
 	}
-	public function deleteUser(){
-
+	public function updatepost(){
+		$id = $this->uri->segment(3, 0);
+		$this->user->updatepost($id);
+		redirect('dashboard/postslist');
 	}
 	public function home(){
-		$this->map_display();
+		redirect('dashboard/map');
 	}
 	public function admin_register(){	
 		$this->load->library('form_validation');
@@ -81,6 +105,7 @@ class Dashboard extends MY_Controller{
 		
 		
 	}
+
 	public function login(){
 		$data['email'] = $this->input->post('email');
   		$data['pass'] = $this->input->post('password');
@@ -104,7 +129,7 @@ class Dashboard extends MY_Controller{
   		endforeach;
   		$this->session->set_userdata('data', $user); 
   		
-  		$this->home();
+  		redirect('dashboard/home');
 		//$this->setSession('userid',$user['userid']);
 		//print_r($this->setSession->all_userdata());
 	}
@@ -113,9 +138,14 @@ class Dashboard extends MY_Controller{
 		$data['user']=$this->user->getUsers();
 		$this->load->view($this->layout,$data);
 	}
+	public function register(){
+		$data['content']='template/register.php';
+		$data['user']=$this->user->getUsers();
+		$this->load->view($this->layout,$data);
+	}
 	public function postslist(){
 		$data['content']='template/posts.php';
-		$data['user']=$this->user->getUsers();
+		$data['posts']=$this->user->getPosts();
 		$this->load->view($this->layout,$data);
 	}
 	public function usertype($type){

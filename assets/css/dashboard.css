@@ -357,4 +357,7 @@ ul.alert-dropdown {
 .greeting{
     color: white;
 }
+.left-adjust{
+    margin-left: 6px;
+}
 
