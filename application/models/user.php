@@ -18,10 +18,28 @@
 				return true;
 			}else{
 				return false;
+			}	
+		}
+		public function member_register()
+		{
+			$data = array(
+					'account_username' => $this->input->post('username'),
+					'account_lastname' => $this->input->post('lastname'),
+					'account_firstname' => $this->input->post('firstname'),
+					'account_password' => $this->input->post('password'),
+					'account_gender' => $this->input->post('gender'),
+					'account_status' =>'0' ,
+					'conn_status' =>'0' ,
+					'account_email' => $this->input->post('email'),
+			);		
+			$query = $this->db->insert('member', $data);
+			if ($query) {
+				echo "success";
+			}else{
+				echo "error" . $data . "<br>";
 			}
 			
 		}
-
 		public function getUsers(){
 			$this->db->select('*');
     		$this -> db -> from('account');
@@ -46,12 +64,11 @@
     		$this->db->join('account', 'traffic_media.account_id=account.account_id'); 
     		$this->db->where('traffic_media.status','0');
     		$query = $this -> db -> get();
-   			return $query->result();
+    		$data=$query->result();
+   			return $data['0'];
 		}
 		
-		public function edit($user){
-			
-		}
+		
 		public function updatePost($id){
 			$data = array(
 					'status' => '1'	

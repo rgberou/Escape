@@ -28,6 +28,30 @@ class Dashboard extends MY_Controller{
 		$this->load->library('session');
 		
 	}
+	public function mobile_reg(){
+		$this->load->model('user');
+		$this->user->member_register();
+	}
+	public function mobile_posts(){
+		$this->load->model('user');
+		$data['posts']=$this->user->getPosts();
+		//echo json_encode($data['posts']);
+		//$posts=json_encode($data['posts']);
+		$post=$data['posts'];
+		$post_data = array(
+			'account_id' => $post->account_id,
+			'account_lname' => $post->account_lname,
+			'account_fnmae' => $post->account_fname,
+			'media_id' => $post->media_id,
+			'date_posted' => $post->date_posted,
+			'media_content' => base64_encode($post->media_content),
+			'time_posted' => $post->time_posted,
+			'dist_type' => $post->caption,
+			'status' => $post->status,
+    	);
+		$post_data=json_encode($post_data);
+		echo $post_data;
+	}
 	public function index()
 	{
 		$data['title'] = "Escape";
@@ -84,6 +108,7 @@ class Dashboard extends MY_Controller{
 	public function home(){
 		redirect('dashboard/map');
 	}
+	
 	public function admin_register(){	
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('id','Id','required|is_unique[account.account_id]');
