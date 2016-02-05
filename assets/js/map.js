@@ -1,30 +1,9 @@
-(function(){
-    // configuration
-var myZoom = 15;
-var myMarkerIsDraggable = true;
-var myCoordsLenght = 6;
-var defaultLat = 37.973787;
-var defaultLng = 23.722426;
-
-// creates the map
-// zooms
-// centers the map
-// sets the map's type 
-var map = new google.maps.Map(document.getElementById("canvas"), {
-	zoom: myZoom,
-	center: new google.maps.LatLng(10.3463251,123.9087637),
-	disableDefaultUI: true,
-	mapTypeControl: false,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
-});
-
-// creates a draggable marker to the given coords
-var myMarker = new google.maps.Marker({
-	position: new google.maps.LatLng(10.3463251,123.9087637),
-	draggable: myMarkerIsDraggable
-});
-
-var trafficLayer = new google.maps.TrafficLayer();
-trafficLayer.setMap(map);
-    
-})();
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(10.32361, 123.92222),
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("map"), mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);

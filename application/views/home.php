@@ -10,6 +10,10 @@
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style2.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
   </head>
   <body>
     <div class="modal-dialog logform">
@@ -18,6 +22,7 @@
             <img src="assets/img/logo.png" width="150px" height="150px" class="">
           </div>
           <div class="modal-body">
+
               <?php echo form_open('dashboard/login'); ?>
                 <input type="text" class="form-control input-lg form-group" placeholder="Username" id="username" name="email" value="" required>
                 <input type="password" class="form-control input-lg form-group" placeholder="Password" id="password" name="password" value="" required>
@@ -25,13 +30,15 @@
               <?php echo form_close();?> 
           </div>
           <div class="modal-footer">
-              
+              <?php echo $error; ?>
           </div>     
       </div>     
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins)<a href="" ><p class="text-center">Forgot password</p></a>  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
   </body>

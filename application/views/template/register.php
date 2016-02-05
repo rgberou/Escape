@@ -17,14 +17,7 @@
                         <hr></hr>
                         <div class="row bottom-adjust">
                             <div class="col-md-8 row-adjust"></div>
-                            <div class="col-md-4 row-adjust">
-                                <div class="input-group">
-                                    <input type="text" class="form-control pull-right" placeholder="Search for...">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-secondary" type="button">Go!</button>
-                                        </span>
-                                </div>
-                            </div>                  
+                                          
                         </div>
                         <?php $this->load->view('template/reg.php');?>
                     </div>

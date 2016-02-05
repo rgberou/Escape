@@ -2,21 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends MY_Controller{
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -28,10 +14,6 @@ class Dashboard extends MY_Controller{
 		$this->load->library('session');
 		
 	}
-	public function mobile_reg(){
-		$this->load->model('user');
-		$this->user->member_register();
-	}
 	public function mobile_posts(){
 		$this->load->model('user');
 		$data['posts']=$this->user->getPosts();
@@ -41,58 +23,31 @@ class Dashboard extends MY_Controller{
 		$post_data = array(
 			'account_id' => $post->account_id,
 			'account_lname' => $post->account_lname,
-			'account_fnmae' => $post->account_fname,
-			'media_id' => $post->media_id,
-			'date_posted' => $post->date_posted,
-			'media_content' => base64_encode($post->media_content),
-			'time_posted' => $post->time_posted,
-			'dist_type' => $post->caption,
-			'status' => $post->status,
+			'account_fnmae' => $post->account_fname
+			
     	);
-		$post_data=json_encode($post_data);
-		echo $post_data;
+		echo json_encode($post_data);
+		
 	}
+	
 	public function index()
 	{
 		$data['title'] = "Escape";
 		//$data['student'] = $this->student->retrieve_student_info();
 		//$this->load->view('user_info', $data);
 		//$this->load->view('template/header');
-		//$this->home();
-		$this->load->view('home');
-	}
-	public function map_display(){
+		$data['error'] = "";
+		$this->load->view('home',$data);
 		
-		$data['content'] = 'template/map.php';
-		$this->load->library('googlemaps');
-		$config['center'] = '37.4419, -122.1419';
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-
-		$marker = array();
-		$marker['position'] = '37.429, -122.1419';
-		$marker['draggable'] = true;
-		$marker['ondragend'] = 'alert(\'You just dropped me at: \' + event.latLng.lat() + \', \' + event.latLng.lng());';
-		$this->googlemaps->add_marker($marker);
-		$data['map'] = $this->googlemaps->create_map();
-
+	}
+	public function mobileposts(){
+		$this->load->model('user');
 		$this->load->view($this->layout,$data);
-		
 	}
+	
 	public function map(){
 		
 		$data['content'] = 'template/traf.php';
-		$this->load->library('googlemaps');
-		$config['center'] = '37.4419, -122.1419';
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		$marker = array();
-		$marker['position'] = '37.429, -122.1419';
-		$marker['draggable'] = true;
-		$marker['ondragend'] = 'alert(\'You just dropped me at: \' + event.latLng.lat() + \', \' + event.latLng.lng());';
-		$this->googlemaps->add_marker($marker);
-		$data['map'] = $this->googlemaps->create_map();
-
 		$this->load->view($this->layout,$data);
 		
 	}
@@ -111,26 +66,28 @@ class Dashboard extends MY_Controller{
 	
 	public function admin_register(){	
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('id','Id','required|is_unique[account.account_id]');
-		$this->form_validation->set_rules('lastname','Lastname','required');
-		$this->form_validation->set_rules('firstname','Firstname','required');
-		$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[account.account_email]');
+		$this->form_validation->set_rules('lastname','Lastname','required|alpha');
+		$this->form_validation->set_rules('firstname','Firstname','required|alpha');
+		$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[member.account_email]');
+		$this->form_validation->set_rules('username','Username','required|is_unique[member.account_username]');
 		$this->form_validation->set_rules('type','Type','required');
 		$this->form_validation->set_rules('gender','Gender','required');
 		if($this->form_validation->run()==FALSE){
-			//$this->load->view('master_layout',$data);
-			redirect($this->layout.'/userlist');
+			$data['content']='template/register.php';
+			$this->load->view('master_layout',$data);
+			
 		}else{
-			//$this->load->view('master_layout'$data);
+			$data['content']='template/register.php';
+			$this->load->view('master_layout',$data);
 			$this->user->admin_register();
-			$this->form_validation->clear_field_data();
-			redirect($this->layout.'/userlist');
-
+			$this->input->post('username');
+			$this->input->post('username');
+			$this->input->post('username');
+			$this->input->post('username');
 		}
 		
 		
 	}
-
 	public function login(){
 		$data['email'] = $this->input->post('email');
   		$data['pass'] = $this->input->post('password');
@@ -139,7 +96,8 @@ class Dashboard extends MY_Controller{
   			//print_r($user['userid']);
   			$this->sess($user);
   		}else{
-  			redirect(base_url());
+  			
+  			redirect(base_url(),$data);
   		}
 	}
 	public function sess($info){
@@ -147,8 +105,8 @@ class Dashboard extends MY_Controller{
 		foreach ($info as $ad): 
   			$user = array(
             'account_id' => $ad->account_id,
-            'account_lname' => $ad->account_lname,
-            'account_fname' => $ad->account_fname,
+            'account_lname' => $ad->account_lastname,
+            'account_fname' => $ad->account_firstname,
             'account_email' => $ad->account_email
          	);
   		endforeach;
@@ -169,8 +127,9 @@ class Dashboard extends MY_Controller{
 		$this->load->view($this->layout,$data);
 	}
 	public function postslist(){
-		$data['content']='template/posts.php';
-		$data['posts']=$this->user->getPosts();
+		$data['content']='template/trafficpost.php';
+		$data['posts']=$this->user->Unapprovedpost();
+		$data['address']='http://192.168.254.102';
 		$this->load->view($this->layout,$data);
 	}
 	public function usertype($type){
@@ -182,6 +141,31 @@ class Dashboard extends MY_Controller{
 			return 'Enforcer';
 		}
 	}
+	public function change_pass(){
+	
+		$config['protocol']='smtp';
+		$config['smtp_host']='ssl://smtp.googlemail.com';
+		$config['smtp_port']=465;
+		$config['smtp_user']='ways2bit@gmail.com';
+		$config['smtp_pass']='bit123456';
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('ways2bit@gmail.com', 'Hasan Hasibul');
+		$this->email->to('brotark@gmail.com');
+		$this->email->subject('email test');
+		$this->email->message('testing the email class. email sent');
+		if($this->email->send()){
+    		echo"Your email was sent successfully";
+		} else {
+    		show_error($this->email->print_debugger());
+		}
+
+		$result = $this->email->send();
+
+
+	}
+
+
 	
 
 }

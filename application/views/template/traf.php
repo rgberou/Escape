@@ -1,5 +1,5 @@
-<?php echo $map['js']; ?>
-<div id="canvas"><?php echo $map['html']; ?></div>
+
+<div id="map" style="width:!00%;height:600px;"></div>
 <section>
 	<div class="row">
 		<div class="container-fluid">
@@ -10,4 +10,6 @@
 		</div>
 	</div>
 </section>
+
+
 

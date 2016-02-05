@@ -13,7 +13,7 @@
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/dash.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,5 +27,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mystyle.css')?>">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpS-SFTmSsHxb_mfvXPEZQs_j2xLjsjIs"
     type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/newmap.js')?>"></script>
 
 </head>

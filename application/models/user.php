@@ -3,17 +3,19 @@
 	{
 		public function admin_register()
 		{
+
 			$data = array(
-					'account_id' => $this->input->post('id'),
-					'account_lname' => $this->input->post('lastname'),
-					'account_fname' => $this->input->post('firstname'),
-					'password' => md5('12345'),
-					'gender' => $this->input->post('gender'),
+					'account_username' => $this->input->post('username'),
+					'account_lastname' => $this->input->post('lastname'),
+					'account_firstname' => $this->input->post('firstname'),
+					'account_password' => md5('lastname'),
+					'account_gender' => $this->input->post('gender'),
+					'account_status' =>'0' ,
 					'conn_status' =>'0' ,
 					'account_type' => $this->input->post('type'),
-					'account_email' => $this->input->post('email'),
+					'account_email' => $this->input->post('email')
 			);		
-			$query = $this->db->insert('account', $data);
+			$query = $this->db->insert('member', $data);
 			if ($query) {
 				return true;
 			}else{
@@ -34,15 +36,15 @@
 			);		
 			$query = $this->db->insert('member', $data);
 			if ($query) {
-				echo "success";
+				return true;
 			}else{
-				echo "error" . $data . "<br>";
+				return false;
 			}
 			
 		}
 		public function getUsers(){
 			$this->db->select('*');
-    		$this -> db -> from('account');
+    		$this -> db -> from('member');
     		$query = $this -> db -> get();
    			return $query->result();
 		}
@@ -65,7 +67,46 @@
     		$this->db->where('traffic_media.status','0');
     		$query = $this -> db -> get();
     		$data=$query->result();
-   			return $data['0'];
+   			return $data;
+		}
+		public function getPostsTraffic(){
+			$this->db->select('
+						post.image_path,
+						post.caption,
+						post.location,
+						post.time_posted,
+						post.date_posted,
+						post.dist_type,
+						member.account_username,
+						member.account_lastname,
+						member.account_firstname
+				');
+    		$this -> db -> from('post');
+    		$this->db->join('member','post.userid=member.userid'); 
+    		$this->db->order_by("post.image_id", "desc"); 
+    		$this->db->where('post.status','1');
+    		$query = $this -> db -> get();
+   			return $query->result();
+		}
+		public function Unapprovedpost(){
+			$this->db->select('
+						post.image_id,
+						post.image_path,
+						post.caption,
+						post.location,
+						post.time_posted,
+						post.date_posted,
+						post.dist_type,
+						member.account_username,
+						member.account_lastname,
+						member.account_firstname
+				');
+    		$this -> db -> from('post');
+    		$this->db->join('member','post.userid=member.userid'); 
+    		$this->db->where('post.status','0');
+    		$this->db->order_by("post.image_id", "desc"); 
+    		$query = $this -> db -> get();
+   			return $query->result();
 		}
 		
 		
@@ -73,19 +114,18 @@
 			$data = array(
 					'status' => '1'	
 			);	
-			$this->db->where('media_id', $id);
-			$this->db->update('traffic_media', $data); 
+			$this->db->where('image_id', $id);
+			$this->db->update('post', $data); 
 
 		}
 		
 			
-		public	function getcredentials($email, $password)
- 			{
+		public	function getcredentials($email, $password){
    				$this -> db -> select('*');
-   				$this -> db -> from('account');
+   				$this -> db -> from('member');
    				$this -> db -> where('account_email', $email);
-   				$this -> db -> where('password',$password);
-
+   				$this -> db -> where('account_password',$password);
+   				$this -> db -> where('account_type','A');
    				$query = $this -> db -> get();
  
    				if($query -> num_rows() == 1)
@@ -97,7 +137,25 @@
      				return false;
    				}
    				
- 			}
+ 		}
+ 		public	function getcredent($user, $password){
+   				$this -> db -> select('*');
+   				$this -> db -> from('member');
+   				$this -> db -> where('account_username', $user);
+   				$this -> db -> where('account_password',$password);
+   				$this -> db -> where("(account_type='M' OR account_type='E')");
+   				$query = $this -> db -> get();
+ 
+   				if($query -> num_rows() == 1)
+   				{
+     				return $query->result();
+   				}
+   				else
+   				{
+     				return false;
+   				}
+   				
+ 		}
 		
 	}
 ?>

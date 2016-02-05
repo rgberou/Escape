@@ -23,7 +23,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php echo base_url();?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -38,7 +38,7 @@
                     </div>
                     <li>
                         <li><!--Navigation for the view of the Map -->
-                            <a href="<?php echo base_url();?>index.php/dashboard/map_display"> <i class="glyphicon glyphicon-home"></i> Dashboard</a>
+                            <a href="<?php echo base_url();?>index.php/dashboard/map"> <i class="glyphicon glyphicon-home"></i> Dashboard</a>
                         </li>
                     </li>
                     <li>

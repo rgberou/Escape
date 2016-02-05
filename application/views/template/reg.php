@@ -1,13 +1,8 @@
 
 <div class="row ">
-  <div class="col-md-4">
+<div class="col-md-1"></div>
+  <div class="col-md-9">
     <?php echo form_open('dashboard/admin_register'); ?>
-          <div class="form-group">
-            <p>
-              <label for="ID">ID</label>
-              <input type="text"  name="id" input type="text" class="form-control input-lg form-group"> </type>
-            </p>
-          </div>
           <div class="form-group">
             <p>
               <label for="Username">Username</label>
@@ -47,25 +42,13 @@
       </select>
     </div>  
     <button type="submit" class="btn btn-block btn-lg btn-primary logbutton">Submit</button>
+    <?php echo form_close();?> 
+    <?php echo validation_errors('<p class="error"></p>');?>
+
     </div>
-<?php echo form_close();?> 
-<?php echo validation_errors('<p class="error"></p>');?>
+
 
   </div>
-
-  <div class="col-md-2">
-    <?php foreach ($user as $users) { ?>
-    <table class="table table-striped">
-        <div class="row borderbot">
-                <h4 class="details"><?php echo $users->account_fname;?> <span class="details">
-                <?php echo $users->account_lname;?></span><br> 
-                    <span class="lower-details"><?php echo $users->account_email;?></span><br>
-                    <span class="lower-details">Created on</span><br>
-                    <span class="lower-details"><?php $CI =& get_instance(); echo $CI->usertype($users->account_type); ?></span>
-                </h4>
-          </div>
-      </table>
-    <?php } ?>
-  </div>
+<div class="col-md-2"></div>
  
 </div>
